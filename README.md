@@ -71,8 +71,16 @@ OLLAMA_MODEL=llama3
 
 ### Step 5: Run Coach Alex
 
+Terminal version:
+
 ```bash
 python main.py
+```
+
+Browser version:
+
+```bash
+streamlit run streamlit_app.py
 ```
 
 ## Commands
