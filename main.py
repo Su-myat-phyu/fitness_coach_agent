@@ -119,7 +119,7 @@ def _is_api_error(exc: Exception) -> bool:
         "timeout",
         "connection",
     )
-    return "groq" in module_name or "ollama" in module_name or any(marker in class_name for marker in api_markers)
+    return "groq" in module_name or any(marker in class_name for marker in api_markers)
 
 
 if __name__ == "__main__":

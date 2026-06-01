@@ -2,10 +2,9 @@ import re
 from copy import deepcopy
 from typing import Any
 
-import ollama
 from groq import Groq
 
-from config import BACKEND, GROQ_API_KEY, MAX_HISTORY_MESSAGES, OLLAMA_MODEL
+from config import BACKEND, GROQ_API_KEY, MAX_HISTORY_MESSAGES
 from memory import (
     MemoryStore,
     is_onboarded,
@@ -37,12 +36,10 @@ def chat(history: list, user_message: str, user_data: dict) -> str:
 
     messages = history[-MAX_HISTORY_MESSAGES:] + [{"role": "user", "content": user_message}]
 
-    if BACKEND == "groq":
-        reply = _chat_with_groq(system, messages)
-    elif BACKEND == "ollama":
-        reply = _chat_with_ollama(system, messages)
-    else:
-        raise ValueError("BACKEND must be either 'groq' or 'ollama'.")
+    if BACKEND != "groq":
+        raise ValueError("Only the Groq backend is supported.")
+
+    reply = _chat_with_groq(system, messages)
 
     reply = reply.strip()
     history.append({"role": "user", "content": user_message})
@@ -69,21 +66,6 @@ def _chat_with_groq(system: str, messages: list) -> str:
             max_tokens=900,
         )
     return response.choices[0].message.content
-
-
-def _chat_with_ollama(system: str, messages: list) -> str:
-    try:
-        response: dict[str, Any] = ollama.chat(
-            model=OLLAMA_MODEL,
-            system=system,
-            messages=messages,
-        )
-    except TypeError:
-        response = ollama.chat(
-            model=OLLAMA_MODEL,
-            messages=[{"role": "system", "content": system}, *messages],
-        )
-    return response["message"]["content"]
 
 
 def extract_profile_updates(user_message: str, user_data: dict) -> dict:

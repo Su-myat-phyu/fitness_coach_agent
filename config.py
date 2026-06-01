@@ -5,14 +5,12 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
-BACKEND = os.getenv("BACKEND", "ollama").strip().lower()
+BACKEND = "groq"
 GROQ_API_KEY = os.getenv("GROQ_API_KEY", "").strip()
-OLLAMA_MODEL = os.getenv("OLLAMA_MODEL", "llama3").strip()
 MAX_HISTORY_MESSAGES = int(os.getenv("MAX_HISTORY_MESSAGES", "30"))
 
+MISSING_GROQ_KEYS = {"", "replace_with_your_groq_api_key", "your_groq_api_key_here"}
 
-if BACKEND not in {"groq", "ollama"}:
-    raise ValueError("BACKEND must be either 'groq' or 'ollama'.")
 
-if BACKEND == "groq" and not GROQ_API_KEY:
-    raise ValueError("GROQ_API_KEY is required when BACKEND=groq.")
+if GROQ_API_KEY in MISSING_GROQ_KEYS:
+    raise ValueError("GROQ_API_KEY is required. Add your Groq key to .env.")

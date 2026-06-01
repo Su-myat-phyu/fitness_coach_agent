@@ -42,7 +42,7 @@ macOS/Linux:
 cp .env.example .env
 ```
 
-### Step 4a: Groq backend
+### Step 4: Add your Groq API key
 
 1. Sign up at `console.groq.com`.
 2. Create a free API key.
@@ -51,22 +51,6 @@ cp .env.example .env
 ```env
 BACKEND=groq
 GROQ_API_KEY=your_groq_api_key_here
-```
-
-### Step 4b: Ollama backend
-
-1. Install Ollama from `ollama.com`.
-2. Pull the local model:
-
-```bash
-ollama pull llama3
-```
-
-3. Set `.env`:
-
-```env
-BACKEND=ollama
-OLLAMA_MODEL=llama3
 ```
 
 ### Step 5: Run Coach Alex
