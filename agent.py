@@ -4,7 +4,7 @@ from typing import Any
 
 from groq import Groq
 
-from config import BACKEND, GROQ_API_KEY, MAX_HISTORY_MESSAGES
+from config import BACKEND, GROQ_API_KEY, GROQ_MODEL, MAX_HISTORY_MESSAGES
 from memory import (
     MemoryStore,
     is_onboarded,
@@ -16,9 +16,6 @@ from memory import (
 )
 from prompts import build_system_prompt
 from tools import calculate_tdee, format_weekly_summary, suggest_calorie_target
-
-
-GROQ_MODEL = "llama3-70b-8192"
 
 
 def chat(history: list, user_message: str, user_data: dict) -> str:
