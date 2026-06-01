@@ -1,0 +1,20 @@
+{
+  "name": "",
+  "age": null,
+  "weight_kg": null,
+  "height_cm": null,
+  "goal": "",
+  "fitness_level": "",
+  "workout_days_per_week": null,
+  "session_minutes": null,
+  "injuries": "",
+  "food_preferences": "",
+  "allergies": "",
+  "calorie_target": null,
+  "start_weight_kg": null,
+  "weight_log": [],
+  "workout_log": [],
+  "meal_log": [],
+  "week_number": 1,
+  "joined_date": ""
+}
